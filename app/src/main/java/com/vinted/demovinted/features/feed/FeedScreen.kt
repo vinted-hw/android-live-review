@@ -71,9 +71,8 @@ private fun FeedGrid(
             items = items,
             key = { it.itemId },
         ) { item ->
-            feedItemCard(
+            FeedItemCard(
                 item = item,
-                modifier = Modifier.padding(4.dp),
             )
         }
     }
