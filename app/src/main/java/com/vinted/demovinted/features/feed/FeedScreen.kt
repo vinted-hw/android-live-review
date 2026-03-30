@@ -25,6 +25,7 @@ import com.vinted.demovinted.models.ItemBox
 @Composable
 fun FeedScreen(
     viewModel: FeedViewModel,
+    onItemClick: (ItemBox) -> Unit = {},
     modifier: Modifier = Modifier,
 ) {
     val state by viewModel.feedState.collectAsStateWithLifecycle()
@@ -43,7 +44,7 @@ fun FeedScreen(
     }
 
     Box(modifier = modifier.fillMaxSize()) {
-        FeedGrid(items = state.content)
+        FeedGrid(items = state.content, onItemClick = onItemClick)
         SnackbarHost(
             hostState = snackbarHostState,
             modifier = Modifier
@@ -56,6 +57,7 @@ fun FeedScreen(
 @Composable
 private fun FeedGrid(
     items: List<ItemBox>,
+    onItemClick: (ItemBox) -> Unit = {},
     modifier: Modifier = Modifier,
 ) {
     LazyVerticalGrid(
@@ -71,9 +73,9 @@ private fun FeedGrid(
             items = items,
             key = { it.itemId },
         ) { item ->
-            feedItemCard(
+            FeedItemCard(
                 item = item,
-                modifier = Modifier.padding(4.dp),
+                onClick = { onItemClick(item) },
             )
         }
     }

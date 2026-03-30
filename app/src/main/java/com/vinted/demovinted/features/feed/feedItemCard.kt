@@ -1,8 +1,10 @@
 package com.vinted.demovinted.features.feed
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,13 +21,15 @@ import com.vinted.demovinted.models.ItemBox
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun feedItemCard(
+fun FeedItemCard(
     item: ItemBox,
-    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {},
 ) {
     Column(
-        modifier = modifier
+        modifier = Modifier
+            .padding(4.dp)
             .fillMaxWidth()
+            .clickable(onClick = onClick)
             .testTag("feed_item"),
     ) {
         GlideImage(
