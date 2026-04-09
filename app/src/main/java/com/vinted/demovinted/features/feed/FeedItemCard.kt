@@ -1,5 +1,6 @@
 package com.vinted.demovinted.features.feed
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -22,11 +23,13 @@ import com.vinted.demovinted.models.ItemBox
 @Composable
 fun FeedItemCard(
     item: ItemBox,
+    onClick: () -> Unit = {},
 ) {
     Column(
         modifier = Modifier
             .padding(4.dp)
             .fillMaxWidth()
+            .clickable(onClick = onClick)
             .testTag("feed_item"),
     ) {
         GlideImage(
